@@ -101,9 +101,9 @@ export function Builder() {
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr]">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 lg:grid-cols-[1fr_1.3fr]">
           {/* Cup preview */}
-          <div className="glass-strong rounded-3xl p-8 shadow-card flex flex-col items-center justify-between min-h-[500px] sticky top-28 self-start">
+          <div className="glass-strong rounded-3xl p-3 sm:p-8 shadow-card flex flex-col items-center justify-between min-h-[280px] sm:min-h-[500px] sticky top-20 sm:top-28 self-start">
             <div className="text-center">
               <div className="text-xs uppercase tracking-widest text-muted-foreground">
                 Visualização ao vivo

@@ -68,7 +68,6 @@ export function Hero() {
             <div className="flex items-center gap-8 pt-4">
               {[
                 { v: "12k+", l: "Copos servidos" },
-                { v: "4.9★", l: "Avaliação média" },
                 { v: "30min", l: "Entrega rápida" },
               ].map((s) => (
                 <div key={s.l}>

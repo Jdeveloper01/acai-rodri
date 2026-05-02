@@ -1,4 +1,4 @@
-import { ShoppingBag, Menu } from "lucide-react";
+import { ShoppingBag, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
@@ -6,19 +6,23 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "#montar", label: "Montar Açaí" },
   { href: "#combos", label: "Combos" },
-  { href: "#avaliacoes", label: "Avaliações" },
   { href: "#sobre", label: "Sobre" },
 ];
 
 export function Navbar() {
   const { count, setIsOpen } = useCart();
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header
@@ -32,7 +36,7 @@ export function Navbar() {
             scrolled ? "glass-strong shadow-elegant" : "glass"
           }`}
         >
-          <a href="#" className="flex items-center gap-2 font-display text-xl font-bold">
+          <a href="#" className="flex items-center gap-2 font-display text-xl font-bold" onClick={closeMenu}>
             <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-primary shadow-glow">
               <span className="font-display text-lg text-primary-foreground">R</span>
             </span>
@@ -68,15 +72,37 @@ export function Navbar() {
               )}
             </Button>
             <Button
+              onClick={toggleMenu}
               variant="ghost"
               size="icon"
               className="md:hidden rounded-full"
               aria-label="Menu"
             >
-              <Menu className="h-5 w-5" />
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </nav>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-2 mx-4">
+            <div className="glass-strong rounded-2xl p-6 shadow-elegant">
+              <ul className="flex flex-col gap-4">
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={closeMenu}
+                      className="block py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

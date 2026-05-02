@@ -4,7 +4,6 @@ import { Leaf, Award, Heart } from "lucide-react";
 
 const values = [
   { icon: Leaf, title: "100% natural", desc: "Polpa pura de açaí da Amazônia, sem corantes." },
-  { icon: Award, title: "Premiado", desc: "Eleito o melhor açaí gourmet da região por 2 anos." },
   { icon: Heart, title: "Feito à mão", desc: "Cada copo é montado com cuidado artesanal." },
 ];
 
@@ -29,7 +28,7 @@ export function About() {
             <div className="absolute -bottom-6 -right-6 hidden md:block glass-strong rounded-2xl p-6 shadow-glow max-w-xs">
               <div className="font-display text-3xl font-bold text-gradient-primary">2019</div>
               <div className="text-sm text-muted-foreground">
-                desde o nosso primeiro copo, mantemos o mesmo padrão obsessivo de qualidade.
+                o nosso primeiro copo, mantemos o mesmo padrão obsessivo de qualidade.
               </div>
             </div>
           </div>
