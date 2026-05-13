@@ -2,6 +2,7 @@ import { Navbar } from "@/components/acai/Navbar";
 import { Hero } from "@/components/acai/Hero";
 import { Builder } from "@/components/acai/Builder";
 import { Combos } from "@/components/acai/Combos";
+import { IceCreams } from "@/components/acai/IceCreams";
 import { About } from "@/components/acai/About";
 import { Footer } from "@/components/acai/Footer";
 import { CartDrawer } from "@/components/acai/CartDrawer";
@@ -16,6 +17,7 @@ const Index = () => {
           <Hero />
           <Builder />
           <Combos />
+          <IceCreams />
           <About />
         </main>
         <Footer />
