@@ -4,6 +4,7 @@ import { Plus, Star } from "lucide-react";
 import { toast } from "sonner";
 import { useReveal } from "@/hooks/use-reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useStoreStatus } from "./use-store-status";
 import {
   Carousel,
   CarouselContent,
@@ -19,7 +20,7 @@ import cupPacoca from "@/assets/cup-pacoca.jpg";
 const combos = [
   {
     id: "classico",
-    name: "Ninho com nutella",
+    name: "Açaí com creme de morango",
     description: "O equilíbrio perfeito entre o leite Ninho em pó e a cremosidade da Nutella original.",
     volume: 500,
     price: 22.9,
@@ -28,24 +29,24 @@ const combos = [
   },
   {
     id: "nutellatto",
-    name: "Creme de morango",
+    name: "Açaí com creme ninho",
     description: "Delicioso creme de morango artesanal com pedaços da fruta e açaí premium.",
-    volume: 700,
+    volume: 500,
     price: 29.9,
     image: cupNutella,
     badge: "Novo",
   },
   {
     id: "tropical",
-    name: "Tropical Glow",
+    name: "Nutellato",
     description: "Manga, kiwi, mirtilo e morango — explosão de frescor.",
-    volume: 700,
+    volume: 500,
     price: 31.9,
     image: cupTropical,
   },
   {
     id: "pacoquinha",
-    name: "Gemini_Generates",
+    name: "Napolitano",
     description: "Uma combinação exclusiva com paçoca, amendoim crocante e um toque de leite condensado.",
     volume: 500,
     price: 24.9,
@@ -57,6 +58,7 @@ export function Combos() {
   const { addItem } = useCart();
   const ref = useReveal<HTMLDivElement>();
   const isMobile = useIsMobile();
+  const { isOpen } = useStoreStatus();
 
   return (
     <section id="combos" className="relative py-24 sm:py-32">
@@ -124,6 +126,7 @@ export function Combos() {
                         </span>
                         <Button
                           size="sm"
+                          disabled={!isOpen}
                           onClick={() => {
                             addItem({
                               id: combo.id,
@@ -188,6 +191,7 @@ export function Combos() {
                     </span>
                     <Button
                       size="sm"
+                      disabled={!isOpen}
                       onClick={() => {
                         addItem({
                           id: combo.id,

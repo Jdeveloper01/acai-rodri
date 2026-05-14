@@ -2,19 +2,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
+import { CheckoutForm } from "./CheckoutForm";
+import { useState } from "react";
+import { useStoreStatus } from "./use-store-status";
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, updateQuantity, removeItem, total, clear } = useCart();
-
-  const handleWhatsapp = () => {
-    const lines = items.map(
-      (i) => `• ${i.quantity}x ${i.name} (${i.description}) — R$ ${(i.price * i.quantity).toFixed(2).replace(".", ",")}`
-    );
-    const msg = encodeURIComponent(
-      `Olá! Quero fazer um pedido no Roxo Premium:\n\n${lines.join("\n")}\n\nTotal: R$ ${total.toFixed(2).replace(".", ",")}`
-    );
-    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
-  };
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const { isOpen: isStoreOpen } = useStoreStatus();
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -40,7 +35,7 @@ export function CartDrawer() {
                   key={item.id}
                   className="glass rounded-2xl p-4 flex flex-col gap-3 animate-fade-in"
                 >
-                  <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start gap-4">
                     <div className="flex-1">
                       <div className="font-semibold leading-tight">{item.name}</div>
                       <div className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
@@ -94,12 +89,13 @@ export function CartDrawer() {
               </span>
             </div>
             <Button
-              onClick={handleWhatsapp}
+              onClick={() => isStoreOpen ? setIsCheckoutOpen(true) : null}
+              disabled={!isStoreOpen}
               size="lg"
-              className="w-full h-14 rounded-full bg-gradient-primary text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform"
+              className="w-full h-14 rounded-full bg-gradient-primary text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:grayscale"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
-              Finalizar via WhatsApp
+              {isStoreOpen ? "Finalizar via WhatsApp" : "Loja Fechada"}
             </Button>
             <button
               onClick={clear}
@@ -110,6 +106,7 @@ export function CartDrawer() {
           </div>
         )}
       </SheetContent>
+      <CheckoutForm isOpen={isCheckoutOpen} onClose={() => setIsCheckoutOpen(false)} />
     </Sheet>
   );
 }

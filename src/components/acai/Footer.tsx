@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,16 +9,16 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary shadow-glow font-display font-bold text-primary-foreground">
-                R
+                D
               </span>
-              <span className="font-display text-2xl font-bold text-gradient">Roxo Premium</span>
+              <span className="font-display text-2xl font-bold text-gradient">Dois Amores</span>
             </div>
             <p className="text-muted-foreground max-w-sm">
               Açaí artesanal premium, montado do seu jeito e entregue na sua porta.
               Experiência gourmet em cada copo.
             </p>
             <div className="flex gap-3 mt-6">
-              {[Instagram, Facebook, Youtube, MessageCircle].map((Icon, i) => (
+              {[Instagram, MessageCircle].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
@@ -44,16 +44,14 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Contato</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Rua das Palmeiras, 123</li>
-              <li>São Paulo — SP</li>
-              <li>(11) 99999-9999</li>
-              <li>contato@roxopremium.com</li>
+              <li>WhatsApp: (11) 99999-9999</li>
+              <li>Instagram: @doisamores</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Roxo Premium. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Dois Amores. Todos os direitos reservados.</p>
           <p>Feito com 💜 para amantes de açaí.</p>
         </div>
       </div>

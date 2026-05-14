@@ -26,7 +26,7 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-tr from-acai-deep/50 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden md:block glass-strong rounded-2xl p-6 shadow-glow max-w-xs">
-              <div className="font-display text-3xl font-bold text-gradient-primary">2019</div>
+              <div className="font-display text-3xl font-bold text-gradient-primary">2025</div>
               <div className="text-sm text-muted-foreground">
                 o nosso primeiro copo, mantemos o mesmo padrão obsessivo de qualidade.
               </div>
@@ -42,7 +42,7 @@ export function About() {
               <span className="text-gradient-primary">sem atalhos.</span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Nasceu em 2019 com uma única missão: levar o melhor açaí do Brasil até você,
+              Nasceu em 2025 com uma única missão: levar o melhor açaí do Brasil até você,
               com obsessão por qualidade, frescor e estética. Cada detalhe importa — da
               polpa selecionada à temperatura do copo.
             </p>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { toast } from "sonner";
 import { useReveal } from "@/hooks/use-reveal";
+import { useStoreStatus } from "./use-store-status";
 
 const sizes = [
   { id: "300", label: "300ml", price: 14.9 },
@@ -48,6 +49,7 @@ export function Builder() {
   const [selectedToppings, setSelectedToppings] = useState<string[]>(["granola", "leite-cond"]);
   const { addItem } = useCart();
   const ref = useReveal<HTMLDivElement>();
+  const { isOpen } = useStoreStatus();
 
   const toggleTopping = (id: string) => {
     setSelectedToppings((prev) =>
@@ -153,12 +155,13 @@ export function Builder() {
                 </span>
               </div>
               <Button
-                onClick={handleAdd}
+                onClick={() => isOpen ? handleAdd() : toast.error("A loja está fechada no momento.")}
+                disabled={!isOpen}
                 size="lg"
-                className="w-full h-14 rounded-full bg-gradient-primary text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform"
+                className="w-full h-14 rounded-full bg-gradient-primary text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:grayscale"
               >
                 <ShoppingBag className="mr-2 h-5 w-5" />
-                Adicionar ao carrinho
+                {isOpen ? "Adicionar ao carrinho" : "Loja Fechada"}
               </Button>
             </div>
           </div>

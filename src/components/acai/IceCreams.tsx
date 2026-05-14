@@ -4,6 +4,7 @@ import { Plus, Star } from "lucide-react";
 import { toast } from "sonner";
 import { useReveal } from "@/hooks/use-reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useStoreStatus } from "./use-store-status";
 import {
   Carousel,
   CarouselContent,
@@ -11,41 +12,41 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import chocolate from "@/assets/chocolate.png";
+import flocos from "@/assets/Flocos.png";
+import morango from "@/assets/morango.png";
+import napolitano from "@/assets/napolitano.png";
 
 const iceCreams = [
   {
     id: "ice-choco",
-    name: "Chocolate Belga",
-    description: "Cremosidade intensa com chocolate 70% e raspas de cacau puro.",
+    name: "Chocolate",
+    description: "Sabor intenso e cremoso, feito com cacau selecionado.",
     volume: 500,
     price: 18.9,
-    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=768&h=1024",
-    badge: "Premium",
+    image: chocolate,
+    badge: "Clássico",
+  },
+  {
+    id: "ice-flocos",
+    name: "Flocos",
+    description: "Delicioso sorvete de baunilha com pedaços crocantes de chocolate.",
+    price: 17.9,
+    image: flocos,
   },
   {
     id: "ice-strawberry",
-    name: "Morango Silvestre",
-    description: "Sorvete artesanal com polpa natural de morango e pedaços da fruta.",
-    volume: 500,
+    name: "Morango",
+    description: "Feito com polpa natural e pedaços frescos da fruta.",
     price: 16.9,
-    image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=768&h=1024",
-    badge: "Novo",
+    image: morango,
   },
   {
-    id: "ice-pistache",
-    name: "Pistache Italiano",
-    description: "O autêntico sabor do pistache com pedaços torrados e crocantes.",
-    volume: 500,
-    price: 24.9,
-    image: "https://images.unsplash.com/photo-1555529321-30d880499e1c?auto=format&fit=crop&q=80&w=768&h=1024",
-  },
-  {
-    id: "ice-vanilla",
-    name: "Baunilha Bourbon",
-    description: "Baunilha premium com fios generosos de caramelo salgado artesanal.",
-    volume: 500,
-    price: 17.9,
-    image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&q=80&w=768&h=1024",
+    id: "ice-napolitano",
+    name: "Napolitano",
+    description: "A clássica união de chocolate, baunilha e morango.",
+    price: 19.9,
+    image: napolitano,
   },
 ];
 
@@ -53,6 +54,7 @@ export function IceCreams() {
   const { addItem } = useCart();
   const ref = useReveal<HTMLDivElement>();
   const isMobile = useIsMobile();
+  const { isOpen } = useStoreStatus();
 
   return (
     <section id="sorvetes" className="relative py-24 sm:py-32 bg-secondary/5">
@@ -95,7 +97,7 @@ export function IceCreams() {
                         loading="lazy"
                         width={768}
                         height={1024}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       {item.badge && (
                         <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-1 rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground shadow-glow">
@@ -103,9 +105,6 @@ export function IceCreams() {
                           {item.badge}
                         </span>
                       )}
-                      <span className="absolute top-4 right-4 z-20 rounded-full glass px-3 py-1 text-[10px] font-semibold uppercase tracking-widest">
-                        {item.volume}ml
-                      </span>
                     </div>
 
                     <div className="flex flex-1 flex-col p-6 -mt-2 relative z-10">
@@ -120,11 +119,12 @@ export function IceCreams() {
                         </span>
                         <Button
                           size="sm"
+                          disabled={!isOpen}
                           onClick={() => {
                             addItem({
                               id: item.id,
                               name: item.name,
-                              description: `${item.volume}ml`,
+                              description: item.description,
                               price: item.price,
                             });
                             toast.success(`${item.name} adicionado!`);
@@ -159,7 +159,7 @@ export function IceCreams() {
                     loading="lazy"
                     width={768}
                     height={1024}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {item.badge && (
                     <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-1 rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground shadow-glow">
@@ -167,9 +167,6 @@ export function IceCreams() {
                       {item.badge}
                     </span>
                   )}
-                  <span className="absolute top-4 right-4 z-20 rounded-full glass px-3 py-1 text-[10px] font-semibold uppercase tracking-widest">
-                    {item.volume}ml
-                  </span>
                 </div>
 
                 <div className="flex flex-1 flex-col p-6 -mt-2 relative z-10">
@@ -184,11 +181,12 @@ export function IceCreams() {
                     </span>
                     <Button
                       size="sm"
+                      disabled={!isOpen}
                       onClick={() => {
                         addItem({
                           id: item.id,
                           name: item.name,
-                          description: `${item.volume}ml`,
+                          description: item.description,
                           price: item.price,
                         });
                         toast.success(`${item.name} adicionado!`);

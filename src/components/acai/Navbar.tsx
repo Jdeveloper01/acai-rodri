@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "#montar", label: "Montar Açaí" },
   { href: "#combos", label: "Combos" },
+  { href: "#sorvetes", label: "Sorvetes" },
   { href: "#sobre", label: "Sobre" },
 ];
 
@@ -38,9 +39,9 @@ export function Navbar() {
         >
           <a href="#" className="flex items-center gap-2 font-display text-xl font-bold" onClick={closeMenu}>
             <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-primary shadow-glow">
-              <span className="font-display text-lg text-primary-foreground">R</span>
+              <span className="font-display text-lg text-primary-foreground">D</span>
             </span>
-            <span className="hidden sm:inline text-gradient">Roxo Premium</span>
+            <span className="hidden sm:inline text-gradient">Dois Amores</span>
           </a>
 
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
