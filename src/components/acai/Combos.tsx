@@ -15,7 +15,7 @@ import {
 import cupTradicional from "@/assets/Creme de morango.png";
 import cupNutella from "@/assets/Gemini_Generated_Image_.png";
 import cupTropical from "@/assets/Ninho com nutella.png";
-import cupPacoca from "@/assets/cup-pacoca.jpg";
+import cupPacoca from "@/assets/açai_napolitano.png";
 
 const combos = [
   {
