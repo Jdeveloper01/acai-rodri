@@ -18,12 +18,17 @@ export function Footer() {
               Experiência gourmet em cada copo.
             </p>
             <div className="flex gap-3 mt-6">
-              {[Instagram, MessageCircle].map((Icon, i) => (
+              {[
+                { Icon: Instagram, href: "https://instagram.com/doisamores", label: "Instagram" },
+                { Icon: MessageCircle, href: "https://wa.me/5585992744728", label: "WhatsApp" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full glass hover:bg-gradient-primary hover:scale-110 transition-all"
-                  aria-label="Rede social"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -44,7 +49,8 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Contato</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>WhatsApp: (11) 99999-9999</li>
+              <li>Rua Erineu Ramos 2027</li>
+              <li>WhatsApp: (85) 9 92744728</li>
               <li>Instagram: @doisamores</li>
             </ul>
           </div>

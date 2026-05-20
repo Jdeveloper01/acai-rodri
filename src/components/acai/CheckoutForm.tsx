@@ -40,8 +40,8 @@ export function CheckoutForm({ isOpen, onClose }: CheckoutFormProps) {
     const customerInfo = `\n\nDados do cliente:\nNome: ${formData.name}\nEndereço: ${formData.address}\nTelefone: ${formData.phone}${formData.specifications ? `\nEspecificações: ${formData.specifications}` : ""}`;
     const msg = encodeURIComponent(
       `Olá! Quero fazer um pedido no Dois Amores:\n\n${lines.join("\n")}\n\nTotal: R$ ${total.toFixed(2).replace(".", ",")}${customerInfo}`
-    ); // Changed "Roxo Premium" to "Dois Amores"
-    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
+    );
+    window.open(`https://wa.me/558596527760?text=${msg}`, "_blank");
     onClose();
   };
 

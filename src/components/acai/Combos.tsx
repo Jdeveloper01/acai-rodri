@@ -21,7 +21,7 @@ const combos = [
   {
     id: "classico",
     name: "Açaí com creme de morango",
-    description: "O equilíbrio perfeito entre o leite Ninho em pó e a cremosidade da Nutella original.",
+    description: "Açaí cremoso com toque irresistível de morango.",
     volume: 500,
     price: 22.9,
     image: cupTradicional,
@@ -30,7 +30,7 @@ const combos = [
   {
     id: "nutellatto",
     name: "Açaí com creme ninho",
-    description: "Delicioso creme de morango artesanal com pedaços da fruta e açaí premium.",
+    description: "Açaí + creme de ninho: combinação perfeita de sabor.",
     volume: 500,
     price: 29.9,
     image: cupNutella,
@@ -39,7 +39,7 @@ const combos = [
   {
     id: "tropical",
     name: "Nutellato",
-    description: "Manga, kiwi, mirtilo e morango — explosão de frescor.",
+    description: "Açaí cremoso com Nutella: indulgência perfeita.",
     volume: 500,
     price: 31.9,
     image: cupTropical,
@@ -47,7 +47,7 @@ const combos = [
   {
     id: "pacoquinha",
     name: "Napolitano",
-    description: "Uma combinação exclusiva com paçoca, amendoim crocante e um toque de leite condensado.",
+    description: "Açaí com creme napolitano: três sabores em uma só delícia.",
     volume: 500,
     price: 24.9,
     image: cupPacoca,
