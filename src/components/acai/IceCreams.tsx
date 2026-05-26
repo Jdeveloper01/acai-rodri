@@ -13,7 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import chocolate from "@/assets/chocolate.png";
-import flocos from "@/assets/Flocos.png";
+import flocos from "@/assets/flocos.png";
 import morango from "@/assets/morango.png";
 import napolitano from "@/assets/napolitano.png";
 

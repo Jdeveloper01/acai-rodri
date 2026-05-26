@@ -19,7 +19,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3 mt-6">
               {[
-                { Icon: Instagram, href: "https://instagram.com/doisamores", label: "Instagram" },
+                { Icon: Instagram, href: "https://www.instagram.com/doisamoresacaiepastelaria_?igsh=MWEzZGFrNXRscWR3Ng==", label: "Instagram" },
                 { Icon: MessageCircle, href: "https://wa.me/5585992744728", label: "WhatsApp" },
               ].map(({ Icon, href, label }) => (
                 <a

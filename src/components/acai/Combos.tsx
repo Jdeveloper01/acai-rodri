@@ -12,10 +12,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import cupTradicional from "@/assets/Creme de morango.png";
-import cupNutella from "@/assets/Gemini_Generated_Image_.png";
-import cupTropical from "@/assets/Ninho com nutella.png";
-import cupPacoca from "@/assets/acai_napolitano.png";
+import cupTradicional from "@/assets/creme-de-morango.png";
+import cupNutella from "@/assets/gemini-generated-image_.png";
+import cupTropical from "@/assets/ninho-com-nutella.png";
+import cupPacoca from "@/assets/acai-napolitano.png";
 
 const combos = [
   {
