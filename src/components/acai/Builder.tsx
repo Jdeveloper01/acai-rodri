@@ -44,9 +44,9 @@ const toppingColorMap: Record<string, string> = {
 };
 
 export function Builder() {
-  const [size, setSize] = useState(sizes[2]);
-  const [base, setBase] = useState(bases[0]);
-  const [selectedToppings, setSelectedToppings] = useState<string[]>(["granola", "leite-cond"]);
+  const [size, setSize] = useState<typeof sizes[number] | null>(null);
+  const [base, setBase] = useState<typeof bases[number] | null>(null);
+  const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const { addItem } = useCart();
   const ref = useReveal<HTMLDivElement>();
   const { isOpen } = useStoreStatus();
@@ -58,6 +58,7 @@ export function Builder() {
   };
 
   const total = useMemo(() => {
+    if (!size) return 0;
     const tt = selectedToppings.reduce(
       (sum, id) => sum + (toppings.find((t) => t.id === id)?.price ?? 0),
       0
@@ -66,11 +67,13 @@ export function Builder() {
   }, [size, selectedToppings]);
 
   const fillHeight = useMemo(() => {
+    if (!size) return 0;
     const map: Record<string, number> = { "300": 50, "500": 65, "700": 78, "1000": 90 };
     return map[size.id];
   }, [size]);
 
   const handleAdd = () => {
+    if (!size || !base) return;
     const toppingNames = selectedToppings
       .map((id) => toppings.find((t) => t.id === id)?.label)
       .filter(Boolean)
@@ -110,10 +113,10 @@ export function Builder() {
               <div className="text-xs uppercase tracking-widest text-muted-foreground">
                 Visualização ao vivo
               </div>
-              <div className="font-display text-2xl mt-2">{size.label} • {base.label}</div>
+              <div className="font-display text-2xl mt-2">{size?.label ?? "—"} • {base?.label ?? "—"}</div>
             </div>
 
-            <div className="relative w-48 h-72 my-8">
+                <div className="relative w-48 h-72 my-8">
               {/* Cup */}
               <div className="absolute inset-x-0 bottom-0 mx-auto w-full h-[88%] rounded-b-[40px] rounded-t-3xl border-2 border-border/60 bg-secondary/40 backdrop-blur-sm overflow-hidden shadow-inner">
                 {/* Açaí fill */}
@@ -126,7 +129,7 @@ export function Builder() {
                 {/* Toppings */}
                 <div
                   className="absolute inset-x-0 flex flex-wrap items-center justify-center gap-1 p-3 transition-all duration-700"
-                  style={{ bottom: `${fillHeight - 4}%` }}
+                  style={{ bottom: `${Math.max(fillHeight - 4, 0)}%` }}
                 >
                   {selectedToppings.map((id) => {
                     const t = toppings.find((tp) => tp.id === id);
@@ -147,7 +150,7 @@ export function Builder() {
               <div className="absolute -inset-4 -z-10 bg-gradient-glow rounded-full blur-2xl opacity-60" />
             </div>
 
-            <div className="w-full space-y-4">
+              <div className="w-full space-y-4">
               <div className="flex items-baseline justify-between">
                 <span className="text-sm text-muted-foreground">Total</span>
                 <span className="font-display text-4xl font-bold text-gradient-primary">
@@ -155,8 +158,11 @@ export function Builder() {
                 </span>
               </div>
               <Button
-                onClick={() => isOpen ? handleAdd() : toast.error("A loja está fechada no momento.")}
-                disabled={!isOpen}
+                onClick={() => {
+                  if (!size || !base) return toast.error("Selecione tamanho e base antes de adicionar.");
+                  return isOpen ? handleAdd() : toast.error("A loja está fechada no momento.");
+                }}
+                disabled={!isOpen || !size || !base}
                 size="lg"
                 className="w-full h-14 rounded-full bg-gradient-primary text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:grayscale"
               >
@@ -175,15 +181,15 @@ export function Builder() {
                     key={s.id}
                     onClick={() => setSize(s)}
                     className={`group relative rounded-2xl p-4 text-left transition-all duration-300 ${
-                      size.id === s.id
+                      size?.id === s.id
                         ? "bg-gradient-primary shadow-glow scale-[1.02]"
                         : "glass hover:border-primary/50 hover:scale-[1.02]"
                     }`}
                   >
-                    <div className={`font-display text-2xl font-bold ${size.id === s.id ? "text-primary-foreground" : "text-foreground"}`}>
+                    <div className={`font-display text-2xl font-bold ${size?.id === s.id ? "text-primary-foreground" : "text-foreground"}`}>
                       {s.label}
                     </div>
-                    <div className={`text-xs ${size.id === s.id ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                    <div className={`text-xs ${size?.id === s.id ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
                       R$ {s.price.toFixed(2).replace(".", ",")}
                     </div>
                   </button>
@@ -198,20 +204,20 @@ export function Builder() {
                     key={b.id}
                     onClick={() => setBase(b)}
                     className={`group flex items-center justify-between rounded-2xl p-4 text-left transition-all duration-300 ${
-                      base.id === b.id
+                      base?.id === b.id
                         ? "bg-gradient-primary shadow-glow"
                         : "glass hover:border-primary/50"
                     }`}
                   >
                     <div>
-                      <div className={`font-semibold ${base.id === b.id ? "text-primary-foreground" : "text-foreground"}`}>
+                      <div className={`font-semibold ${base?.id === b.id ? "text-primary-foreground" : "text-foreground"}`}>
                         {b.label}
                       </div>
-                      <div className={`text-xs ${base.id === b.id ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                      <div className={`text-xs ${base?.id === b.id ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
                         {b.desc}
                       </div>
                     </div>
-                    {base.id === b.id && (
+                    {base?.id === b.id && (
                       <Check className="h-5 w-5 text-primary-foreground animate-scale-in" />
                     )}
                   </button>

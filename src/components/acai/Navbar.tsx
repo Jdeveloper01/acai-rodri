@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 
-const links = [
+  const links = [
   { href: "#montar", label: "Montar Açaí" },
   { href: "#combos", label: "Combos" },
   { href: "#sorvetes", label: "Sorvetes" },
@@ -37,7 +37,15 @@ export function Navbar() {
             scrolled ? "glass-strong shadow-elegant" : "glass"
           }`}
         >
-          <a href="#" className="flex items-center gap-2 font-display text-xl font-bold" onClick={closeMenu}>
+          <a
+            href="#"
+            className="flex items-center gap-2 font-display text-xl font-bold"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              closeMenu();
+            }}
+          >
             <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-primary shadow-glow">
               <span className="font-display text-lg text-primary-foreground">D</span>
             </span>
@@ -49,6 +57,13 @@ export function Navbar() {
               <li key={l.href}>
                 <a
                   href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const id = l.href.replace("#", "");
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                    closeMenu();
+                  }}
                   className="relative transition-colors hover:text-foreground after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-gradient-primary after:transition-all hover:after:w-full"
                 >
                   {l.label}
@@ -93,7 +108,13 @@ export function Navbar() {
                   <li key={l.href}>
                     <a
                       href={l.href}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const id = l.href.replace("#", "");
+                        const el = document.getElementById(id);
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        closeMenu();
+                      }}
                       className="block py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {l.label}

@@ -1,6 +1,27 @@
 import { Instagram, MessageCircle } from "lucide-react";
 
+const footerLinks = [
+  { href: "#montar", label: "Montar Açaí" },
+  { href: "#combos", label: "Combos" },
+  { href: "#sorvetes", label: "Sorvetes" },
+  { href: "#avaliacoes", label: "Avaliações" },
+  { href: "#sobre", label: "Sobre" },
+];
+
 export function Footer() {
+  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="relative border-t border-border/50 py-16">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
@@ -19,7 +40,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3 mt-6">
               {[
-                { Icon: Instagram, href: "https://www.instagram.com/doisamoresacaiepastelaria_?igsh=MWEzZGFrNXRscWR3Ng==", label: "Instagram" },
+                { Icon: Instagram, href: "https://www.instagram.com/acai.2amores__?igsh=b3puamZwZ2tkNjln", label: "Instagram" },
                 { Icon: MessageCircle, href: "https://wa.me/5585992744728", label: "WhatsApp" },
               ].map(({ Icon, href, label }) => (
                 <a
@@ -39,10 +60,17 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Menu</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#montar" className="hover:text-foreground transition-colors">Montar Açaí</a></li>
-              <li><a href="#combos" className="hover:text-foreground transition-colors">Combos</a></li>
-              <li><a href="#avaliacoes" className="hover:text-foreground transition-colors">Avaliações</a></li>
-              <li><a href="#sobre" className="hover:text-foreground transition-colors">Sobre</a></li>
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(event) => handleScroll(event, link.href)}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
