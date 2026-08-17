@@ -40,7 +40,7 @@ export function Footer() {
             <div className="flex gap-3 mt-6">
               {[
                 { Icon: Instagram, href: "https://www.instagram.com/acai.2amores__?igsh=b3puamZwZ2tkNjln", label: "Instagram" },
-                { Icon: MessageCircle, href: "https://wa.me/5585992744728", label: "WhatsApp" },
+                { Icon: MessageCircle, href: "https://wa.me/5585996527760", label: "WhatsApp" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -77,7 +77,7 @@ export function Footer() {
             <h4 className="font-display text-lg font-semibold mb-4">Contato</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Rua Erineu Ramos 2027</li>
-              <li>WhatsApp: (85) 9 92744728</li>
+              <li>WhatsApp: (85) 9 96527760</li>
               <li>Instagram: @doisamores</li>
             </ul>
           </div>
