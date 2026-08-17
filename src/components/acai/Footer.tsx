@@ -4,7 +4,6 @@ const footerLinks = [
   { href: "#montar", label: "Montar Açaí" },
   { href: "#combos", label: "Combos" },
   { href: "#sorvetes", label: "Sorvetes" },
-  { href: "#avaliacoes", label: "Avaliações" },
   { href: "#sobre", label: "Sobre" },
 ];
 

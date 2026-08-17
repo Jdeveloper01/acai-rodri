@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-acai.jpg";
+import { scrollToSection } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export function Hero() {
@@ -44,24 +45,22 @@ export function Hero() {
               toppings — e veja seu copo dos sonhos ganhar vida.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Button
-                asChild
                 size="lg"
-                className="group h-14 rounded-full bg-gradient-primary px-8 text-base font-semibold text-primary-foreground shadow-glow transition-all hover:scale-105 hover:shadow-elegant"
+                className="group h-14 w-full rounded-full bg-gradient-primary px-8 text-base font-semibold text-primary-foreground shadow-glow transition-all hover:scale-[1.02] hover:shadow-elegant sm:w-auto [&_svg]:size-5"
+                onClick={() => scrollToSection("montar")}
               >
-                <a href="#montar">
-                  Começar pedido
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
+                Começar pedido
+                <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
-                asChild
-                variant="ghost"
+                variant="outline"
                 size="lg"
-                className="h-14 rounded-full border border-border px-8 text-base hover:bg-primary/10"
+                className="h-14 w-full rounded-full border-border/60 bg-background/40 px-8 text-base font-semibold backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/10 hover:scale-[1.02] sm:w-auto"
+                onClick={() => scrollToSection("combos")}
               >
-                <a href="#combos">Ver combos</a>
+                Ver combos
               </Button>
             </div>
 
